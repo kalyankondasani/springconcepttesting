@@ -32,6 +32,6 @@ public class TestController {
 
         logger.info("request came to controller");
         String response = testService.callService(greeting);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response.contains("Default") ? null : response, HttpStatus.OK);
     }
 }

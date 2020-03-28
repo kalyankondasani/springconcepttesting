@@ -24,8 +24,24 @@ public class TestService {
         logger.info("service level log");
 
         customValidator.validateRequest(greeting);
-        String response = testCommand.execute();
+
+        Boolean result = manipulateGreetingModel(greeting);
+        String response = null;
+        if(result) {
+
+            response = testCommand.execute();
+
+        }
+
         Thread.sleep(5000);
-        return response;
+        return response == null ? "Default": response;
+    }
+
+    public Boolean manipulateGreetingModel(Greeting greeting) {
+        if(greeting.getValue().equalsIgnoreCase("Kalyan")) {
+            return true;
+        }
+
+        return false;
     }
 }
